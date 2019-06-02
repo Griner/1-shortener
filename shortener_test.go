@@ -11,8 +11,10 @@ func init() {
 	testStorage = NewShortener("test.local")
 }
 
-var testUrl = "http://example.com/1/2/3"
-var rightShortUrl = "https://test.local/69c4fae842b00fdd0ac58faf135a754a"
+const (
+	testUrl       = "http://example.com/1/2/3"
+	rightShortUrl = "https://test.local/69c4fae842b00fdd0ac58faf135a754a"
+)
 
 func TestShorten(t *testing.T) {
 
@@ -20,7 +22,14 @@ func TestShorten(t *testing.T) {
 	if shortUrl != rightShortUrl {
 		t.Fatal("shortUrl != rightShortUrl")
 	}
+
+	// request existing link
+	shortUrl = testStorage.Shorten(testUrl)
+	if shortUrl != rightShortUrl {
+		t.Fatal("shortUrl != rightShortUrl")
+	}
 }
+
 func TestResolve(t *testing.T) {
 
 	link := testStorage.Resolve(rightShortUrl)
