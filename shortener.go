@@ -60,12 +60,14 @@ func (ss *ShortenerStorage) Resolve(Url string) string {
 	log.Println("Short URL", Url)
 	hash := strings.TrimLeft(u.RequestURI(), "/")
 
-	if Link := ss.getById(hash); Link != "" {
-		log.Println("URL", Link)
-		return Link
-	}
+	return ss.getById(hash)
 
-	return ss.Host
+	// if Link := ss.getById(hash); Link != "" {
+	// 	log.Println("URL", Link)
+	// 	return Link
+	// }
+
+	// return ss.Host
 }
 
 func (ss *ShortenerStorage) Clean() {
