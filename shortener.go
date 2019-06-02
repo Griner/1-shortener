@@ -28,7 +28,8 @@ func (ss *ShortenerStorage) Shorten(Url string) string {
 
 	u, err := url.Parse(Url)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		return ""
 	}
 
 	log.Println("URL", Url)
@@ -52,7 +53,8 @@ func (ss *ShortenerStorage) Resolve(Url string) string {
 
 	u, err := url.Parse(Url)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		return ""
 	}
 
 	log.Println("Short URL", Url)
