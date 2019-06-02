@@ -20,11 +20,8 @@ type ShortenerStorage struct {
 
 func (ss *ShortenerStorage) getById(id string) string {
 
-	if NormalLink, ok := ss.storage[id]; ok {
-		return NormalLink
-	}
-
-	return ""
+	NormalLink := ss.storage[id]
+	return NormalLink
 }
 
 func (ss *ShortenerStorage) Shorten(Url string) string {
