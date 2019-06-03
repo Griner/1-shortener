@@ -36,14 +36,12 @@ func (ss *ShortenerStorage) Shorten(Url string) string {
 
 	hash := fmt.Sprintf("%x", md5.Sum([]byte(u.String())))
 
-	if Link := ss.getById(hash); Link != "" {
-		return Link
-	}
-
 	newU := url.URL{Scheme: "https", Host: ss.Host, Path: hash}
-
 	newShortLink := newU.String()
-	ss.storage[hash] = Url
+
+	if Link := ss.getById(hash); Link == "" {
+		ss.storage[hash] = Url
+	}
 
 	log.Println("Short URL", newShortLink)
 	return newShortLink
